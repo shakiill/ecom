@@ -1,0 +1,12 @@
+{% extends 'frontend/main.html' %}
+{% load static %}
+{% block content %}
+    <section class="contact">
+        <div class="container-fluid">
+            <div class="row">
+               <h2>{{ object.name }}</h2>
+                <img src="{{ object.photo.url }}" alt="">
+            </div>
+        </div>
+    </section>
+{% endblock %}
