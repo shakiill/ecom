@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2">
-                    <div class="shop-cat">
+                    <form method="get" class="shop-cat">
                         <div class="filter-block cat-filter">
                             <h4>Category:</h4>
                             <ul>
@@ -33,120 +33,39 @@
                             </ul>
                         </div>
                         <div class="filter-block color-filter">
-                            <a href="" class="btn btn-danger"> Filter </a>
+                            <input class="btn btn-danger" type="submit" value="Filter">
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-10">
                     <div class="shop-product">
+
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
+                            {% if object_list %}
+                                {% for f in object_list %}
+                                    <div class="col-md-3">
+                                        <div class="card" style="width: 18rem;">
+                                            <a href="{% url 'product_details' f.pk %}">
+                                                <img class="card-img-top" src="{{ f.photo.url }}" alt="Card image cap">
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ f.name }}</h5>
+                                                <h6>Price: {{ f.price }}</h6>
+                                            </div>
+                                            <ul class="list-group list-group-flush product-button">
+                                                <li class="list-group-item"><a class="btn btn-danger" href="">Buy
+                                                    Now</a></li>
+                                                <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static 'image/p1.webp' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Product title</h5>
-                                        <h6>Price: 560</h6>
-                                    </div>
-                                    <ul class="list-group list-group-flush product-button">
-                                        <li class="list-group-item"><a class="btn btn-danger" href="">Buy Now</a></li>
-                                        <li class="list-group-item"><a class="btn btn-info" href="">Add Cart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-
+                                {% endfor %}
+                            {% else %}
+                                <p>No featured product found!</p>
+                            {% endif %}
                         </div>
+
 
                     </div>
                 </div>

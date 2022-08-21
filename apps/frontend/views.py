@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 
 from apps.frontend.models import HomeSlider
-from apps.product.models import Category, Product
+from apps.product.models import Category, Product, ProductPhoto
 
 
 class HomeView(TemplateView):
@@ -19,13 +19,31 @@ class HomeView(TemplateView):
         return context
 
 
-class ShopView(TemplateView):
+class ShopView(ListView):
+    model = Product
     template_name = "frontend/shop.html"
+
+    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        qs = super(ShopView, self).get_queryset()
+        lr = self.request.GET.get('lower', None)
+        up = self.request.GET.get('upper', None)
+        if lr:
+            qs = qs.filter(price__gte=lr)
+        if up:
+            qs = qs.filter(price__lte=up)
+        return qs
 
 
 class ProductView(DetailView):
     model = Product
     template_name = 'frontend/product.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['img_list'] = ProductPhoto.objects.filter(product=self.object.pk)
+        return context
 
 
 class ContactView(TemplateView):
