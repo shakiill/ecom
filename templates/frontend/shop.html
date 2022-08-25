@@ -8,13 +8,14 @@
                     <form method="get" class="shop-cat">
                         <div class="filter-block cat-filter">
                             <h4>Category:</h4>
-                            <ul>
-                                <li>Category-1</li>
-                                <li>Category-1</li>
-                                <li>Category-1</li>
-                                <li>Category-1</li>
-                                <li>Category-1</li>
-                            </ul>
+                            {% for cat in cat_list %}
+                                <div class="row" style="padding-left: 20px;">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="cat" class="form-check-input"
+                                               value="{{ cat.pk }}">{{ cat.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="filter-block price-range">
                             <h4>Price Range:</h4>
@@ -23,14 +24,14 @@
                         </div>
                         <div class="filter-block color-filter">
                             <h4>Select Color:</h4>
-                            <ul>
-                                <li>Color 1</li>
-                                <li>Color 1</li>
-                                <li>Color 1</li>
-                                <li>Color 1</li>
-                                <li>Color 1</li>
-                                <li>Color 1</li>
-                            </ul>
+                             {% for c in color_list %}
+                                <div class="row" style="padding-left: 20px;">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="color" class="color"
+                                               value="{{ c.pk }}">{{ c.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="filter-block color-filter">
                             <input class="btn btn-danger" type="submit" value="Filter">

@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, ListView
 
 from apps.frontend.models import HomeSlider
-from apps.product.models import Category, Product, ProductPhoto
+from apps.product.models import Category, Product, ProductPhoto, Color
 
 
 class HomeView(TemplateView):
@@ -29,11 +29,23 @@ class ShopView(ListView):
         qs = super(ShopView, self).get_queryset()
         lr = self.request.GET.get('lower', None)
         up = self.request.GET.get('upper', None)
+        cat = self.request.GET.get('cat', None)
+        color = self.request.GET.get('color', None)
+        if color:
+            qs = qs.filter(color=color)
+        if cat:
+            qs = qs.filter(category=cat)
         if lr:
             qs = qs.filter(price__gte=lr)
         if up:
             qs = qs.filter(price__lte=up)
         return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cat_list'] = Category.objects.all()
+        context['color_list'] = Color.objects.all()
+        return context
 
 
 class ProductView(DetailView):

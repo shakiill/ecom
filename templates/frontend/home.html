@@ -59,7 +59,7 @@
                 {% for cat in cat_list %}
                     {% if not forloop.counter > 2 %}
                         <div class="col-md-6">
-                            <a href="">
+                            <a href="/shop/?cat={{ cat.pk }}">
                                 <div class="card" style="width: 100%;">
                                     <img src="{{ cat.photo.url }}" class="card-img-top" alt="...">
                                 </div>
@@ -146,7 +146,7 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <a class="btn btn-info" href="">View ALL</a>
+                    <a class="btn btn-info" href="{% url 'shop' %}">View ALL</a>
                 </div>
             </div>
         </div>
