@@ -13,3 +13,7 @@ class RegisterView(CreateView):
     form_class = CustomerRegForm
     success_url = reverse_lazy('home')
     template_name = 'register.html'
+
+
+class LoginView(TemplateView):
+    template_name = 'login.html'
